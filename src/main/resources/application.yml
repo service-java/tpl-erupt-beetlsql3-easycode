@@ -1,0 +1,91 @@
+spring:
+  profiles:
+    active: dev
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  messages:
+    encoding: UTF-8
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 100MB
+      enabled: true
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/demo?characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      max-lifetime: 290_000
+      connection-timeout: 3000_000
+      maximum-pool-size: 60
+      minimum-idle: 10
+      idle-timeout: 60_000
+      # leak-detection-threshold: 5000
+      allow-pool-suspension: true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    open-in-view: true
+    show-sql: true
+    generate-ddl: true
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: mysql
+    properties:
+      hibernate:
+        format_sql: true
+
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    out-of-order: true
+    locations:
+      - classpath:db/migration
+  redis:
+    database: 0
+    timeout: 10000
+    host: 127.0.0.1
+    port: 6379
+    password: 123456
+    jedis:
+      pool:
+        max-active: 1000
+        max-wait: -1ms
+        max-idle: 10
+        min-idle: 5
+
+server:
+  tomcat:
+    uri-encoding: UTF-8
+
+beetlsql:
+  sqlManagers: coreSqlManager
+  coreSqlManager:
+    ds: dataSource
+    dev: true
+    basePackage: com.example.**.mapper
+    daoSuffix: Mapper
+    sqlPath: mdsql
+    nameConversion: org.beetl.sql.core.UnderlinedNameConversion
+    dbStyle: org.beetl.sql.core.db.MySqlStyle
+    sqlFileCharset: utf-8
+
+
+erupt-app:
+  verifyCodeCount: 2
+  pwdTransferEncrypt: true
+  locales: [ "zh-CN","en-US"]
+
+erupt:
+  csrfInspect: false
+  redisSession: true
+  uploadPath: D:/erupt/pictures
+  keepUploadFileName: false
+  upms:
+    expireTimeByLogin: 60
+    strictRoleMenuLegal: true
+  job.enable: true
+  security.recordOperateLog: true

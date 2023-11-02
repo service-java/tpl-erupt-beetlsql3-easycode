@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: jdbc:mysql://rm-bp1d0ioq6l9lmrwfdno.rwlb.rds.aliyuncs.com:3306/demo-dev?characterEncoding=UTF-8&allowMultiQueries=true&serverTimezone=GMT%2B8
+    username: root
+    password: 打死不能说的密码
+  redis:
+    database: 1
+    timeout: 10000
+    host: r-bp1mrdlgceu4li1b67pd.redis.rds.aliyuncs.com
+    port: 6379
+    password: 打死不能说的密码
+  jpa:
+    generate-ddl: true
+
+erupt:
+  uploadPath: D:/erupt/pictures
